@@ -289,7 +289,7 @@ mail($to, $subject, $message, $headers);
             <a class="nav-link" href="#" data-toggle="modal" data-target="#modalContacto">Contactanos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="acerca.php"  >Acerca de</a>
+            <a class="nav-link" href="acerca.php" data-toggle="modal" data-target="#login">Acerca de</a>
           </li>
         <?php if($_SESSION['usuario']){ ?> 
           
@@ -309,28 +309,8 @@ mail($to, $subject, $message, $headers);
 
       <div class="col-lg-3">
 
-          <h1 class="my-4">Categorias</h1>
-            <div class="list-group">
-
-               <?php 
-				         //// mostrar categorias
-                             $consulta="SELECT COUNT(a.id_instru) AS cantidad, b.id_cat, b.desc_cat FROM instrumento AS a, categoria AS b WHERE a.id_cat=b.id_cat GROUP BY b.id_cat, b.id_cat";
-                             $ejecuta=$link->query($consulta);
-                             $fila=$ejecuta->fetch_array();
-				         do{
-						
-				          ?>	
-                           
-                      
-					        <a href="detalle2.php?id_categoria=<?php echo $fila["id_cat"];  ?> "  class="list-group-item"  style="text-decoration:none"><?php echo $fila["desc_cat"];?> ( <?php echo $fila["cantidad"];?> ) </a>	
-                        	  
-							 
-                    <?php
-                
-						      } while($fila=$ejecuta->fetch_array())
-
-						       ?>
-                  </div><!-- /list-group -->
+       
+            
 
         </div> <!-- /.col-lg-3 -->
      
@@ -362,126 +342,35 @@ mail($to, $subject, $message, $headers);
                         </a>
           </div>  <!-- /carouselExampleIndicators"-->
         
-          <hr/>
-          <h2 class="text-center"> Realiza tu busqueda </h2>
+          <br />
+<br />
+<br />
+<br /><br />
+               <center><h2>Encuentra tu instrumento </h2> </center>
+              <br/> <br/><br/>
+    
+    <p> 	
+     El sitio web esta orientado tantos a los usuarios que busquen instrumentos facilitando este proceso como a los dueños de las tiendas que pueden exhibir sus artí­culos para anhelar ser la mejor opción del mercado.</p>
+ <p> 	
+ Buscamos ser la empresa líder en entregar a nuestros clientes la mejor calidad comparativa musical que estén buscando, satisfaciendo sus necesidades y brindándoles un excelente servicio cada día para poder ser una organización líder nacional y reconocida internacionalmente por nuestra calidad de servicio.
+</p>
+<p>
+El fin es desarrollar una plataforma web la cual permite buscar y comparar instrumentos musicales de diversas tiendas de instrumentos para facilitar la búsqueda y cotización de instrumentos musicales orientado tantos a los usuarios que busquen instrumentos facilitando este proceso como a los dueños de las tiendas que pueden exhibir sus artículos para anhelar ser la mejor opción del mercado.
+</p>
+
+
+<br />
+<br />
+<br />
+<br /><br />
+<br /><br />
+<br />
+
+
+
+
+        
      
-
-        <center>
-       <form action="" method="post" id="formulario" >
-               
-               Precio: <select name="seleccion">
-                    <option value="baratos">mas baratos </option>
-                    <option value="caros"> mas caros</option>
-               </select>
-              
-               Marcas:<select name ="marcas">
-               <?php 
-                 $consulta2="select DISTINCT marca_instru from instrumento ";
-                  $ejecuta2=$link->query($consulta2);;
-
-                  /// colocar datos de las tablas en un arreglo $arr
-                  $n=0; 
-                  while($fila2=$ejecuta2->fetch_array()){   //  recorre por columna y guarda la columna en $fila2  
-                  $arr[$n]=$fila2; 
-                    $n++; 
-                   }
-                    
-	       
-		         for($i=0;$i<$n;$i++){  
-	             ?>
-                  <option> <?php echo $arr[$i]['marca_instru']; ?> </option>
-                    <?php }?>
-               
-               </select>
-               
-              <br>
-                <br>
-          <input class="btn btn-primary btn-lg" name="enviar" type="submit"  value="buscar" id="enviar" />
-               
-               
-               </form>
-               </center>
-   
-               <hr/>
-        <?php    
-	       $consulta2="select * from instrumento order by rand() limit 6";
-         $ejecuta2=$link->query($consulta2);
-
-          /// colocar datos de las tablas en un arreglo $arr
-          $n=0; 
-          while($fila2=$ejecuta2->fetch_array()){   //  recorre por columna y guarda la columna en $fila2  
-                $arr[$n]=$fila2; 
-                $n++; 
-                }
-
-		            for($i=0;$i<$n;$i++){  
-	       ?>
-
-
-
-        <div class="row ">
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-             <img class="card-img-top " src="<?php echo $arr[$i]['foto_instru']; ?>" alt="" height="143" width="70"   >
-              <div class="card-body">
-                 <h6 class="card-title ">
-                  <a href="detalle.php?id_intru=<?php echo $arr[$i]['id_instru']; ?>"><?php echo $arr[$i]['nombre_instru'];?> </a>
-                </h6> 
-                <h5><?php  echo "Precio: $".number_format($arr[$i]['precio_unitario'], 0, '', '.');   ?></h5>
-                <p class="card-text"><?php //echo $arr[$i]['desc_instru'];    ?></p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted"></small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-            <img class="card-img-top" src="<?php echo $arr[$i+1]['foto_instru']; ?>" alt="" height="143" width="70">
-              <div class="card-body">
-                <h6 class="card-title">
-                  <a href="detalle.php?id_intru=<?php echo $arr[$i+1]['id_instru']; ?>"><?php echo $arr[$i+1]['nombre_instru'];?> </a>
-                </h6>
-                <h5><?php  $i++;  echo "Precio: $".number_format($arr[$i]['precio_unitario'], 0, '', '.');   ?> </h5>
-                <p class="card-text"><?php //echo $arr[$i]['desc_instru']; ?></p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted"></small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <img class="card-img-top" src="<?php echo $arr[$i+1]['foto_instru']; ?>" alt="" height="143" width="70">
-              <div class="card-body">
-                <h6 class="card-title">
-                  <a href="detalle.php?id_intru=<?php echo $arr[$i+1]['id_instru']; ?>"><?php echo $arr[$i+1]['nombre_instru'];?> </a>
-                </h6>
-                <h5><?php  $i++;  echo "Precio: $".number_format($arr[$i]['precio_unitario'], 0, '', '.');   ?>
-</h5>
-                <p class="card-text"> <?php //echo $arr[$i]['desc_instru']; ?> </p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted"></small>
-              </div>
-            </div>
-          </div>
-
-          
-
-         
-        
-
-        </div>
-
-        
-        <?php  
-    } 
-  
-   ?>
         <!-- /.row -->
 
       </div>

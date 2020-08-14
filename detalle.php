@@ -355,6 +355,9 @@ if($ejecuta>0) {
           <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#modalContacto">Contactanos</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="acerca.php"  >Acerca de</a>
+          </li>
         <?php if($_SESSION['usuario']){ ?> 
           
           <li class="nav-item">
