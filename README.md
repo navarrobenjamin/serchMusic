@@ -1,4 +1,4 @@
-# Sitio desarrollado con php7, javaScript, bootstrap4 y mysql.
+# Sitio desarrollado con php7, javaScript, bootstrap 4 y mysql.
 
 # Demo del sitio http://serchmusic.webcindario.com/.
 
